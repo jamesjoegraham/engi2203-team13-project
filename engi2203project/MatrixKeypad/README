@@ -1,0 +1,6 @@
+I've written a function to read inputs form the matrix keypad. I put the functions defiinition and declaration 
+into a source file and a header file. There is also a project that I included which is simply a program that calls
+the getKeyPress() function and prints the correct value to PuTTY. 
+
+I think it would be a good idea to put any other functions we will need that invlove the keypad into these files, and to make similar
+files for the other devices we will use.
