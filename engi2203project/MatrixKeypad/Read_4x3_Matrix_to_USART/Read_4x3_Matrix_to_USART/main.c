@@ -13,32 +13,20 @@
 
 int main(void)
 {
-   init_uart();
+	initHardware();
+	init_uart();
    
-   int keypress;
+	char keypress;
 
-   while (1)
-   {
-	   keypress = getKeyPress()+1;
-	   if(keypress < 10){
-		   printf("%d\n", keypress);
-		   _delay_ms(250);
-	   }
-	   else if(keypress == 10){
-		   printf("*\n");
-		   _delay_ms(250);
-	   }
-	   else if(keypress == 11){
-		   printf("0\n");
-		   _delay_ms(250);
-	   }
-	   else if(keypress==12){
-		   printf("#\n");
-		   _delay_ms(250);
-	   }else
-	   {
-	   }
-   }
-   return 0;
+	while (1)
+	{
+		keypress = getNewKeypress();
+		
+		if(keypress)printf("%c\n", keypress);
+		
+		
+	   
+	}
+	return 0;
 }
 
