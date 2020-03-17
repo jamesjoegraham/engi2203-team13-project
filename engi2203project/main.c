@@ -9,60 +9,48 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-#include "MatrixKeypad/4x3_Matrix.h"
+#include "4x3_Matrix.h"
+#include "timer.h"
+#include "states.h"
 #include "sound/sound.h"
 #include "alarm/alarm.h"
 
-// KEYPAD CODE
-char* keypass = "1234";
 
 
-unsigned long int c;
-// interrupt
-ISR (TIMER1_OVF_vect)
-{
-	c++;
-}
 
 
 int main(void)
 {
-	// program start	
-	// initialize stuff
+	// initialize Keypad & timer
+	initKeypad();
+	initTimer();
+	set_count(0);
 	
-	c = 0;
-	TIMSK1 = (1 << TOIE1);
-	TCCR1B = (1 << CS12) || (1 << CS10);
-	TCNT1 = 65520;
-	sei();
+	// initialize LED ports
+	DDRC |= 0xFF;
 	
-	DDRB = 0xFF;
-	DDRC = 0xFF;
+	// initialize state
+	state = 0;
 	
 	// main loop
     while (1) 
     {
-		// get key press
-		//int key = getKeyPress();
-		// if waiting too long, clear key press history
-		
-		
-		// call to PIR sensor, if on enable alarm
-		
-		
-		if (c < 3000) disarm();
-		else if (c < 6000) arm();
-		else if (c < 9000) pdetect();
-		else
+		if(state == 0) // Runs in disarmed state
 		{
-			alarm(c);
+			disarmed();
 		}
-		
-		// call to ultrasound sensor, if on commence countdown
-		
-		//beepTone(5000);
-		
-		
+		if(state == 1) // Runs while system is arming
+		{
+			arming();
+		}
+		if(state == 2) // runs while system is armed
+		{
+			armed();
+		}
+		if(state == 3) // runs while system is alarming
+		{
+			alarming();
+		}
     }
 }
 
