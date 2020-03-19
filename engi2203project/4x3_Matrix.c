@@ -13,6 +13,18 @@ char buttons[4][3] = {{'1', '2', '3'},
 					  {'4', '5', '6'},
 					  {'7', '8', '9'},
 					  {'*', '0', '#'}};
+						  
+char keypress;
+
+char upass[] = "****";
+
+char dpass[] = "6969";
+
+char cpass[] = "1234";
+
+char ppass[] = "4202";
+
+int pindex = 0;
 
 void initKeypad(void)
 {
@@ -86,3 +98,61 @@ char getNewKeypress(void)
 }
  
 
+int updatePin(char key)
+{
+	if(key == '*')
+	{
+		pindex = 0;
+		upass[0] = '*';
+		upass[1] = '*';
+		upass[2] = '*';
+		upass[3] = '*';
+	}else if(key)
+	{
+		upass[pindex] = key;
+		pindex++;
+	}
+	
+	if(pindex == 4)
+	{
+		if(strcmp(upass, dpass) == 0)
+		{
+			upass[0] = '*';
+			upass[1] = '*';
+			upass[2] = '*';
+			upass[3] = '*';
+			pindex = 0;
+			return 1;
+		}
+		else if(strcmp(upass, cpass) == 0)
+		{
+			upass[0] = '*';
+			upass[1] = '*';
+			upass[2] = '*';
+			upass[3] = '*';
+			pindex = 0;
+			return 2;
+		}
+		else if(strcmp(upass, ppass) == 0)
+		{
+			upass[0] = '*';
+			upass[1] = '*';
+			upass[2] = '*';
+			upass[3] = '*';
+			pindex = 0;
+			return 3;
+		}
+		else
+		{
+			upass[0] = '*';
+			upass[1] = '*';
+			upass[2] = '*';
+			upass[3] = '*';
+			pindex = 0;
+			return 0;
+		}
+		
+	}
+	
+	return 0;
+}

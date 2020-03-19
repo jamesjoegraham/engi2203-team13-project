@@ -7,6 +7,8 @@
 
 #include "timer.h"
 
+unsigned volatile long int count;
+
 // interrupt for counter
 ISR (TIMER1_COMPA_vect)
 {

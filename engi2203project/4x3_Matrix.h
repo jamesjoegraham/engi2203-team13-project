@@ -26,10 +26,6 @@
 #define COLDDR DDRD
 
 //initialize variable for key pressed
-char keypress;
-
-
-
 
 void initKeypad(void);
 
@@ -41,6 +37,7 @@ char getKeypress(void);
 
 char getNewKeypress(void);
 
+int updatePin(char key);
 
 
 

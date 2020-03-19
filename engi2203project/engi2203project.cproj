@@ -144,6 +144,9 @@
     <Compile Include="timer.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="uart_utility_functions.c">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="alarm" />

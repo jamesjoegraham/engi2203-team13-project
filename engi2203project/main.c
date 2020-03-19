@@ -15,7 +15,15 @@
 #include "sound/sound.h"
 #include "alarm/alarm.h"
 
-
+/*
+Legend for state
+0 = disarmed
+1 = arming
+2 = armed
+3 = person detected
+4 = silent alarm
+5 = alarming
+*/
 
 
 
@@ -25,6 +33,7 @@ int main(void)
 	initKeypad();
 	initTimer();
 	set_count(0);
+	init_uart();
 	
 	// initialize LED ports
 	DDRC |= 0xFF;
@@ -47,7 +56,15 @@ int main(void)
 		{
 			armed();
 		}
-		if(state == 3) // runs while system is alarming
+		if(state == 3) // runs while system has detected something (30s)
+		{
+			detected();
+		}
+		if(state == 4) // runs while system is in panic mode
+		{
+			panic();
+		}
+		if(state == 5)
 		{
 			alarming();
 		}
