@@ -5,9 +5,9 @@
  * Author : JF
  */ 
 
-#include <stdio.h>
-#include <avr/io.h>
-#include <avr/pgmspace.h>
+#include "uart_utility_functions.h"
+
+
 int uart_putchar(char c, FILE *stream);
 int uart_getchar(FILE *stream);
 FILE mystdout = FDEV_SETUP_STREAM(uart_putchar, NULL, _FDEV_SETUP_WRITE);

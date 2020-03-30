@@ -20,10 +20,10 @@
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <RamSnippetAddress />
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <OverrideVtorValue />
     <BootSegment>2</BootSegment>
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>0</eraseonlaunchrule>
@@ -120,13 +120,22 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="4x3_Matrix.c">
+    <Compile Include="admin\admin.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="alarm\alarm.c">
+    <Compile Include="admin\admin.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="alarm\alarm.h">
+    <Compile Include="halleffect\halleffect.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="halleffect\halleffect.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="keypad\keypad.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="keypad\keypad.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
@@ -141,16 +150,35 @@
     <Compile Include="states.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="timer.c">
+    <Compile Include="states.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="timer\timer.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="timer\timer.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="uart_utility_functions.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="uart_utility_functions.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ultrasound\ultrasound.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ultrasound\ultrasound.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="alarm" />
-    <Folder Include="sound" />
+    <Folder Include="halleffect\" />
+    <Folder Include="keypad\" />
+    <Folder Include="admin" />
+    <Folder Include="sound\" />
+    <Folder Include="timer\" />
+    <Folder Include="ultrasound\" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

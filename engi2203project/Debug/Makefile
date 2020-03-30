@@ -33,19 +33,25 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
-../alarm \
-../sound
+../halleffect/ \
+../keypad/ \
+../admin \
+../sound/ \
+../timer/ \
+../ultrasound/
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../4x3_Matrix.c \
-../alarm/alarm.c \
+../admin/admin.c \
+../halleffect/halleffect.c \
+../keypad/keypad.c \
 ../main.c \
 ../sound/sound.c \
 ../states.c \
-../timer.c \
-../uart_utility_functions.c
+../timer/timer.c \
+../uart_utility_functions.c \
+../ultrasound/ultrasound.c
 
 
 PREPROCESSING_SRCS += 
@@ -55,40 +61,48 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-4x3_Matrix.o \
-alarm/alarm.o \
+admin/admin.o \
+halleffect/halleffect.o \
+keypad/keypad.o \
 main.o \
 sound/sound.o \
 states.o \
-timer.o \
-uart_utility_functions.o
+timer/timer.o \
+uart_utility_functions.o \
+ultrasound/ultrasound.o
 
 OBJS_AS_ARGS +=  \
-4x3_Matrix.o \
-alarm/alarm.o \
+admin/admin.o \
+halleffect/halleffect.o \
+keypad/keypad.o \
 main.o \
 sound/sound.o \
 states.o \
-timer.o \
-uart_utility_functions.o
+timer/timer.o \
+uart_utility_functions.o \
+ultrasound/ultrasound.o
 
 C_DEPS +=  \
-4x3_Matrix.d \
-alarm/alarm.d \
+admin/admin.d \
+halleffect/halleffect.d \
+keypad/keypad.d \
 main.d \
 sound/sound.d \
 states.d \
-timer.d \
-uart_utility_functions.d
+timer/timer.d \
+uart_utility_functions.d \
+ultrasound/ultrasound.d
 
 C_DEPS_AS_ARGS +=  \
-4x3_Matrix.d \
-alarm/alarm.d \
+admin/admin.d \
+halleffect/halleffect.d \
+keypad/keypad.d \
 main.d \
 sound/sound.d \
 states.d \
-timer.d \
-uart_utility_functions.d
+timer/timer.d \
+uart_utility_functions.d \
+ultrasound/ultrasound.d
 
 OUTPUT_FILE_PATH +=engi2203project.elf
 
@@ -104,14 +118,21 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
-./4x3_Matrix.o: .././4x3_Matrix.c
+admin/admin.o: ../admin/admin.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-alarm/alarm.o: ../alarm/alarm.c
+halleffect/halleffect.o: ../halleffect/halleffect.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+keypad/keypad.o: ../keypad/keypad.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -139,7 +160,7 @@ sound/sound.o: ../sound/sound.c
 	@echo Finished building: $<
 	
 
-./timer.o: .././timer.c
+timer/timer.o: ../timer/timer.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -147,6 +168,13 @@ sound/sound.o: ../sound/sound.c
 	
 
 ./uart_utility_functions.o: .././uart_utility_functions.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+ultrasound/ultrasound.o: ../ultrasound/ultrasound.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
